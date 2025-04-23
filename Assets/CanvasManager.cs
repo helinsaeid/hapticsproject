@@ -1,0 +1,18 @@
+using UnityEngine;
+
+public class CanvasManager : MonoBehaviour
+{
+    public GameObject startMenu;
+    public GameObject chatMenu;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        startMenu.SetActive(true);
+    }
+
+    public void StartButton()
+    {
+        startMenu.SetActive(false);
+        chatMenu.SetActive(true);
+    }
+}
