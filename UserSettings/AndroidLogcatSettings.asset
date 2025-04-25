@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "RFCN30JXHQY",
         "name": "com.DefaultCompany.com.unity.template.mobile2D",
-        "processId": 3079,
+        "processId": 10953,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -11,37 +11,31 @@
         {
             "deviceId": "RFCN30JXHQY",
             "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 17396,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCN30JXHQY",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 6270,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCN30JXHQY",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 29322,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCN30JXHQY",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 32317,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCN30JXHQY",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
             "processId": 1161,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "RFCN30JXHQY",
             "name": "com.DefaultCompany.com.unity.template.mobile2D",
             "processId": 3079,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCN30JXHQY",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 32759,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCN30JXHQY",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 10366,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCN30JXHQY",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 10953,
             "exited": false
         }
     ],

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
 using Random = System.Random;
+using JetBrains.Annotations;
 
 
 public class VibrationManager : MonoBehaviour
@@ -17,6 +18,8 @@ public class VibrationManager : MonoBehaviour
     private GameObject vibrateButtonObject;
     [Tooltip("Canvas container for buttons and messages")]
     public GameObject canvasObject;
+    public GameObject chatBubble;
+
     // Define varables
     Dictionary<string, long[]> promptsAndVibrations =
         new Dictionary<string, long[]>();
@@ -26,10 +29,10 @@ public class VibrationManager : MonoBehaviour
     void Start()
     {
         /*DEFINE PATTERNS*/
-        long[] joy = { 1, 1000, 1000, 1000, 1000 };
-        long[] sadness = { 2, 1000, 1000, 1000, 1000 };
-        long[] relaxation = { 10, 1000, 1000, 1000, 1000 };
-        long[] anger = { 3, 1000, 1000, 1000, 1000 };
+        long[] joy = { 0, 150, 100, 150, 100, 150 };
+        long[] sadness = { 0, 600, 100, 600 };
+        long[] relaxation = { 0, 400, 800, 400 };
+        long[] anger = { 0, 300, 1000, 300 };
         
         
         // Add patterns and messages
@@ -62,14 +65,17 @@ public class VibrationManager : MonoBehaviour
             // Message Object 
             messageObject = Instantiate(messagePrefab);
             messageObject.GetComponent<TMPro.TextMeshProUGUI>().text = messages[randomNr];
-            messageObject.transform.SetParent(canvasObject.transform);  
-            messageObject.transform.localPosition = Vector3.zero + new Vector3(0, 200, 0);
+            messageObject.transform.SetParent(chatBubble.transform);  
+            messageObject.transform.localPosition = Vector3.zero /*+ new Vector3(0, 250, 0)*/;
 
             // Vibrate Button
             setVibrateBtn(value);
             
             // Debug
             FindFirstObjectByType<Logger>().Log($"Message: {messages[randomNr]}, Pattern: {value}");
+
+            //Start Vibration
+            AndroidVibrate(value, -1);
             
             // Remove from lists.
             promptsAndVibrations.Remove(messages[randomNr]);
@@ -104,7 +110,7 @@ public class VibrationManager : MonoBehaviour
         Button btn = vibrateButtonObject.GetComponent<Button>();
         
         btn.transform.SetParent(canvasObject.transform);
-        btn.transform.localPosition = Vector3.zero + new Vector3(200, 0, 0);
+        btn.transform.localPosition = Vector3.zero + new Vector3(0, -450, 0);
         
         if (Application.platform == RuntimePlatform.IPhonePlayer) {
             // iOS pattern -- Random Vibration
@@ -134,18 +140,20 @@ public class VibrationManager : MonoBehaviour
             // Android -- Custom pattern
             btn.onClick.AddListener(() =>
             {
-                FindFirstObjectByType<Logger>().Log($"Vibrate with pattern: {pattern}");
-                VibrateAndroid();
+                AndroidVibrate(pattern, -1);
             });
 
         }
         
     }
 
-    void VibrateAndroid()
+    void AndroidVibrate(long[] pattern, int repeat)
     {
-        
+        Vibration.Init();
+        Vibration.VibrateAndroid(pattern, repeat);
+        FindFirstObjectByType<Logger>().Log($"Vibrate with pattern: {pattern}");
     }
+
     
     // IOS test
     IEnumerator VibratePattern1()

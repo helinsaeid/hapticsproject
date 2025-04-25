@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\helin\\My project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\users\\helin\\my project\\assets\\canvasmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\canvasmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\users\\helin\\my project\\assets\\scripts\\vibrationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\vibrationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\users\\helin\\my project\\assets\\scripts\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CanvasManager.cs",
-              "DocumentMoniker": "C:\\Users\\helin\\My project\\Assets\\CanvasManager.cs",
-              "RelativeDocumentMoniker": "Assets\\CanvasManager.cs",
-              "ToolTip": "C:\\Users\\helin\\My project\\Assets\\CanvasManager.cs",
-              "RelativeToolTip": "Assets\\CanvasManager.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAQwA8AAAAhAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Logger.cs",
+              "DocumentMoniker": "C:\\Users\\helin\\My project\\Assets\\Scripts\\Logger.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Logger.cs",
+              "ToolTip": "C:\\Users\\helin\\My project\\Assets\\Scripts\\Logger.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Logger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T10:43:23.296Z",
+              "WhenOpened": "2025-04-25T08:46:57.173Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "VibrationManager.cs",
+              "DocumentMoniker": "C:\\Users\\helin\\My project\\Assets\\Scripts\\VibrationManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\VibrationManager.cs",
+              "ToolTip": "C:\\Users\\helin\\My project\\Assets\\Scripts\\VibrationManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\VibrationManager.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAwwGsAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T08:35:11.335Z",
               "EditorCaption": ""
             }
           ]

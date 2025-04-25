@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -14,5 +15,6 @@ public class CanvasManager : MonoBehaviour
     {
         startMenu.SetActive(false);
         chatMenu.SetActive(true);
+        FindFirstObjectByType<VibrationManager>().nextPattern();
     }
 }

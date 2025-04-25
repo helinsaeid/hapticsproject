@@ -6,6 +6,8 @@ TagManager:
   tags:
   - StartMenu
   - Chat
+  - Message
+  - VibrateBtn
   layers:
   - Default
   - TransparentFX
