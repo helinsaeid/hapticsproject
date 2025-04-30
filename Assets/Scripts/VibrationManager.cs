@@ -20,6 +20,7 @@ public class VibrationManager : MonoBehaviour
     public GameObject canvasObject;
     public GameObject chatBubble;
 
+    private string currentMessage;
     // Define varables
     Dictionary<string, long[]> promptsAndVibrations =
         new Dictionary<string, long[]>();
@@ -49,6 +50,11 @@ public class VibrationManager : MonoBehaviour
     // Is called when user presses "Next pattern"-button
     public void nextPattern()
     {
+        if (currentMessage != null)
+        {
+            FindFirstObjectByType<QuestionnaireManager>().logQuestionnaireValues($"{currentMessage}");
+        }
+        
         // Random value between 0 and length of dict.
         Random rnd = new Random();
         int randomNr  = rnd.Next(0, promptsAndVibrations.Count-1);  // creates a number between 0 and length of dict
@@ -62,6 +68,7 @@ public class VibrationManager : MonoBehaviour
                 Destroy(go);
             }
             
+            
             // Message Object 
             messageObject = Instantiate(messagePrefab);
             messageObject.GetComponent<TMPro.TextMeshProUGUI>().text = messages[randomNr];
@@ -72,8 +79,9 @@ public class VibrationManager : MonoBehaviour
             setVibrateBtn(value);
             
             // Debug
-            FindFirstObjectByType<Logger>().Log($"Message: {messages[randomNr]}, Pattern: {value}");
-
+            // FindFirstObjectByType<Logger>().Log($"Message: {messages[randomNr]}, Pattern: {value}");
+            // Set current message
+            currentMessage = messages[randomNr];
             //Start Vibration
             AndroidVibrate(value, -1);
             
@@ -133,7 +141,7 @@ public class VibrationManager : MonoBehaviour
                         StartCoroutine(VibratePattern1());
                         break;
                 }
-                FindFirstObjectByType<Logger>().Log($"Vibrate with pattern: {pattern}");
+                //FindFirstObjectByType<Logger>().Log($"Vibrate with pattern: {pattern}");
                 
             });
         } else {
@@ -150,7 +158,7 @@ public class VibrationManager : MonoBehaviour
     void AndroidVibrate(long[] pattern, int repeat)
     {
         Vibration.Init();
-        Vibration.VibrateAndroid(pattern, repeat);
+        //Vibration.VibrateAndroid(pattern, repeat);
         FindFirstObjectByType<Logger>().Log($"Vibrate with pattern: {pattern}");
     }
 
