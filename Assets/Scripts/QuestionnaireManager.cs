@@ -13,20 +13,23 @@ public class QuestionnaireManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void logQuestionnaireValues(string message)
     {
+        string arousalValue = "0", valenceValue = "0"; 
         Toggle arousal = arousalGroup.ActiveToggles().FirstOrDefault();
-        string arousalValue = arousal.GetComponentInChildren<TMPro.TextMeshProUGUI>().text; // This can be NULL 
+        if (arousal != null)
+        {
+            arousalValue = arousal.GetComponentInChildren<TMPro.TextMeshProUGUI>().text; 
+        }
         
         Toggle valence = valenceGroup.ActiveToggles().FirstOrDefault();
-        string valenceValue = valence.GetComponentInChildren<TMPro.TextMeshProUGUI>().text; // This can be NULL
-
-        FindFirstObjectByType<Logger>().Log($"{message}, {arousalValue},  {valenceValue}");
+        if (valence != null)
+        {
+            valenceValue = valence.GetComponentInChildren<TMPro.TextMeshProUGUI>().text;
+        }
+        
+        // If something is wrong the arousal and valence values are 0
+        FindFirstObjectByType<Logger>().Log($"'{message}', {arousalValue},  {valenceValue}");
         
     }
     

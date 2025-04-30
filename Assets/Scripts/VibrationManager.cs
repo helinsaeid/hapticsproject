@@ -24,6 +24,8 @@ public class VibrationManager : MonoBehaviour
     // Define varables
     Dictionary<string, long[]> promptsAndVibrations =
         new Dictionary<string, long[]>();
+    
+    // Fill in messages here
     List<string> messages = new List<string>() {"Hello1", "Hello2", "Hello3", "Hello4", "Hello5", "Hello6", "Hello7", "Hello8"};
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -159,7 +161,7 @@ public class VibrationManager : MonoBehaviour
     {
         Vibration.Init();
         //Vibration.VibrateAndroid(pattern, repeat);
-        FindFirstObjectByType<Logger>().Log($"Vibrate with pattern: {pattern}");
+        // FindFirstObjectByType<Logger>().Log($"Vibrate with pattern: {pattern}");
     }
 
     
