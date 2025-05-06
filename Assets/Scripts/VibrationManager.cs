@@ -120,7 +120,7 @@ public class VibrationManager : MonoBehaviour
         Button btn = vibrateButtonObject.GetComponent<Button>();
         
         btn.transform.SetParent(canvasObject.transform);
-        btn.transform.localPosition = Vector3.zero + new Vector3(0, -450, 0);
+        btn.transform.localPosition = Vector3.zero + new Vector3(0, -680, 0);
         
         if (Application.platform == RuntimePlatform.IPhonePlayer) {
             // iOS pattern -- Random Vibration
@@ -160,7 +160,7 @@ public class VibrationManager : MonoBehaviour
     void AndroidVibrate(long[] pattern, int repeat)
     {
         Vibration.Init();
-        //Vibration.VibrateAndroid(pattern, repeat);
+        Vibration.VibrateAndroid(pattern, repeat);
         // FindFirstObjectByType<Logger>().Log($"Vibrate with pattern: {pattern}");
     }
 

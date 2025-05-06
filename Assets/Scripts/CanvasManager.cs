@@ -9,6 +9,7 @@ public class CanvasManager : MonoBehaviour
     void Start()
     {
         startMenu.SetActive(true);
+        FindFirstObjectByType<QuestionnaireManager>().HideQuestionnaire();
     }
 
     public void StartButton()
@@ -16,5 +17,6 @@ public class CanvasManager : MonoBehaviour
         startMenu.SetActive(false);
         chatMenu.SetActive(true);
         FindFirstObjectByType<VibrationManager>().nextPattern();
+        FindFirstObjectByType<QuestionnaireManager>().ShowQuestionnaire();
     }
 }
