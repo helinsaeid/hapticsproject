@@ -21,6 +21,8 @@ public class VibrationManager : MonoBehaviour
     public GameObject chatBubble;
 
     private string currentMessage;
+
+    private bool shouldVibrate = true;
     // Define varables
     Dictionary<string, long[]> promptsAndVibrations =
         new Dictionary<string, long[]>();
@@ -78,14 +80,20 @@ public class VibrationManager : MonoBehaviour
             messageObject.transform.localPosition = Vector3.zero /*+ new Vector3(0, 250, 0)*/;
 
             // Vibrate Button
-            setVibrateBtn(value);
+            if (shouldVibrate)
+            {
+                setVibrateBtn(value);
+            }
             
             // Debug
             // FindFirstObjectByType<Logger>().Log($"Message: {messages[randomNr]}, Pattern: {value}");
             // Set current message
             currentMessage = messages[randomNr];
             //Start Vibration
-            AndroidVibrate(value, -1);
+            if (shouldVibrate)
+            {
+                AndroidVibrate(value, -1);
+            }
             
             // Remove from lists.
             promptsAndVibrations.Remove(messages[randomNr]);
@@ -160,7 +168,7 @@ public class VibrationManager : MonoBehaviour
     void AndroidVibrate(long[] pattern, int repeat)
     {
         Vibration.Init();
-        Vibration.VibrateAndroid(pattern, repeat);
+        // Vibration.VibrateAndroid(pattern, repeat);
         // FindFirstObjectByType<Logger>().Log($"Vibrate with pattern: {pattern}");
     }
 
@@ -226,6 +234,9 @@ public class VibrationManager : MonoBehaviour
     {
         
     }
-    
-    
+
+    public void SetShouldVibrate(bool value)
+    {
+        shouldVibrate = value;
+    }
 }
