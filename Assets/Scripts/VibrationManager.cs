@@ -187,7 +187,7 @@ public class VibrationManager : MonoBehaviour
     void AndroidVibrate(long[] pattern, int repeat)
     {
         Vibration.Init();
-        // Vibration.VibrateAndroid(pattern, repeat);
+        Vibration.VibrateAndroid(pattern, repeat);
         // FindFirstObjectByType<Logger>().Log($"Vibrate with pattern: {pattern}");
     }
 
