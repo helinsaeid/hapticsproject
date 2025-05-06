@@ -54,6 +54,25 @@ public class VibrationManager : MonoBehaviour
     // Is called when user presses "Next pattern"-button
     public void nextPattern()
     {
+        // I know this is ugly, but it works... And i don't want to make it pretty right now.
+        if (promptsAndVibrations.Count == 0)
+        {
+            // Check if gameobjects with message tag exists and destroy found.
+            var gos = GameObject.FindGameObjectsWithTag("Message");
+            foreach (var go in gos)
+            {
+                Destroy(go);
+            }
+            
+            messageObject = Instantiate(messagePrefab);
+            messageObject.GetComponent<TMPro.TextMeshProUGUI>().text = "Experiment DONE :) " +
+                                                                       "Thank you for participating";
+            messageObject.transform.SetParent(chatBubble.transform);  
+            messageObject.transform.localPosition = Vector3.zero /*+ new Vector3(0, 250, 0)*/;
+            FindFirstObjectByType<QuestionnaireManager>().HideQuestionnaire();
+            return;
+        }
+        
         if (currentMessage != null)
         {
             FindFirstObjectByType<QuestionnaireManager>().logQuestionnaireValues($"{currentMessage}");

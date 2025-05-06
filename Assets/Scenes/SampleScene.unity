@@ -711,7 +711,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Confirm
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8675,6 +8675,7 @@ MonoBehaviour:
   arousalGroup: {fileID: 809013391}
   valenceGroup: {fileID: 655068408}
   emotionGroup: {fileID: 1617826372}
+  optionGroup: {fileID: 1577736890}
 --- !u!4 &1835996447
 Transform:
   m_ObjectHideFlags: 0

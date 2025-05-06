@@ -9,6 +9,7 @@ public class QuestionnaireManager : MonoBehaviour
     public ToggleGroup arousalGroup;
     public ToggleGroup valenceGroup;
     public ToggleGroup emotionGroup;
+    public GameObject optionGroup;
     
     // Add emotions
     // Negative          Positive
@@ -33,7 +34,7 @@ public class QuestionnaireManager : MonoBehaviour
     }
     public void logQuestionnaireValues(string message)
     {
-        string arousalValue = "0", valenceValue = "0"; 
+        string arousalValue = "0", valenceValue = "0",  emotionValue = "0"; 
         Toggle arousal = arousalGroup.ActiveToggles().FirstOrDefault();
         if (arousal != null)
         {
@@ -45,9 +46,19 @@ public class QuestionnaireManager : MonoBehaviour
         {
             valenceValue = valence.GetComponentInChildren<TMPro.TextMeshProUGUI>().text;
         }
+        Toggle emotion = emotionGroup.ActiveToggles().FirstOrDefault();
+        if (emotion != null)
+        {
+            emotionValue = emotion.GetComponentInChildren<TMPro.TextMeshProUGUI>().text;
+        }
+
+        bool shouldVibrate = optionGroup.transform.Find("ShouldVibrateToggle").GetComponent<Toggle>().isOn;
+        // Torsdag kan Helin
+        // 25 istället för 50 meddelanden
+        
         
         // If something is wrong the arousal and valence values are 0
-        FindFirstObjectByType<Logger>().Log($"'{message}', {arousalValue},  {valenceValue}");
+        FindFirstObjectByType<Logger>().Log($"'{message}', {emotionValue}, {arousalValue},  {valenceValue}, {shouldVibrate}");
         
         ResetGroups();
     }
