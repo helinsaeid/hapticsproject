@@ -32,7 +32,8 @@ public class QuestionnaireManager : MonoBehaviour
     {
         questionnaireContainerPrefab.SetActive(true);
     }
-    public void logQuestionnaireValues(string message)
+
+    public void logQuestionnaireValues(string message, string vibration)
     {
         string arousalValue = "0", valenceValue = "0",  emotionValue = "0"; 
         Toggle arousal = arousalGroup.ActiveToggles().FirstOrDefault();
@@ -53,12 +54,9 @@ public class QuestionnaireManager : MonoBehaviour
         }
 
         bool shouldVibrate = optionGroup.transform.Find("ShouldVibrateToggle").GetComponent<Toggle>().isOn;
-        // Torsdag kan Helin
-        // 25 istället för 50 meddelanden
-        
         
         // If something is wrong the arousal and valence values are 0
-        FindFirstObjectByType<Logger>().Log($"'{message}', {emotionValue}, {arousalValue},  {valenceValue}, {shouldVibrate}");
+        FindFirstObjectByType<Logger>().Log($"'{message}', '{vibration}', {emotionValue}, {arousalValue},  {valenceValue}, {shouldVibrate}");
         
         ResetGroups();
     }

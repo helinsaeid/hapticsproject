@@ -21,34 +21,96 @@ public class VibrationManager : MonoBehaviour
     public GameObject chatBubble;
 
     private string currentMessage;
-
+    private long[] currentVibration;
+    
     private bool shouldVibrate = true;
     // Define varables
-    Dictionary<string, long[]> promptsAndVibrations =
-        new Dictionary<string, long[]>();
+    // Define variables
+    Dictionary<string, long[]> promptsAndVibrations = new Dictionary<string, long[]>();
+    List<string> messages = new List<string>() {
+        // Joy
+        "I got the job!",
+        "I'm doing great!",
+        "It's such a beautiful day today!",
+        "Can't wait to see you today!",
+        "I just got amazing news!",
+        "Everything is working out perfectly!",
+        "That made me laugh so much!",
+        "I'm feeling really lucky today.",
+        "I finally finished it, I'm so proud",
+        "Life feels really good right now.",
+
+        // Sadness
+        "It didn't turn out the way I hoped.",
+        "I don't feel like it today.",
+        "It feels like a heavy day.",
+        "Why does this happen to me?",
+        "I miss how things used to be.",
+        "I'm feeling really low right now.",
+        "It’s hard to keep pretending I’m okay.",
+        "I wish things were different.",
+        "I just feel so alone.",
+        "Today feels like too much.",
+
+        // Relaxation
+        "Im sitting by the beach, listening to waves",
+        "No stress today, just taking it easy",
+        "Enjoying a cup of tea and some silence.",
+        "I'm just lying on the couch doing nothing.",
+        "Watching the sunset in peace.",
+        "Taking a slow walk through the park.",
+        "Just breathing and being present.",
+        "Curled up with a book and blanket.",
+        "Letting the day unfold slowly.",
+        "Just listening to soft music and unwinding.",
+
+        // Anger
+        "Why do you never answer?!",
+        "This is completely unacceptable.",
+        "I can't deal with this right now.",
+        "I'm seriously bothered.",
+        "That’s not okay.",
+        "I’m done explaining myself.",
+        "This keeps happening and I’m sick of it.",
+        "You never listen!",
+        "That really crossed a line.",
+        "I need space, I’m too upset to talk.",
+
+        // Neutral
+        "See you later.",
+        "I left the package outside your door.",
+        "The meeting starts at three.",
+        "I will walk there.",
+        "I'm eating lunch right now.",
+        "I just finished my meeting.",
+        "I ate lunch!",
+        "I'll call you tomorrow.",
+        "It's on the table.",
+        "I'm going to the store now."
+    };
     
-    // Fill in messages here
-    List<string> messages = new List<string>() {"Hello1", "Hello2", "Hello3", "Hello4", "Hello5", "Hello6", "Hello7", "Hello8"};
-    
+    long[] joy = { 0, 150, 100, 150, 100, 150 };
+    long[] sadness = { 0, 600, 100, 600 };
+    long[] relaxation = { 0, 400, 800, 400 };
+    long[] anger = { 0, 300, 1000, 300 };
+
+    Dictionary<string, long[]> emotionMap = new Dictionary<string, long[]>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        /*DEFINE PATTERNS*/
-        long[] joy = { 0, 150, 100, 150, 100, 150 };
-        long[] sadness = { 0, 600, 100, 600 };
-        long[] relaxation = { 0, 400, 800, 400 };
-        long[] anger = { 0, 300, 1000, 300 };
+        // Add to map
         
+        emotionMap.Add("joy", joy);
+        emotionMap.Add("sadness", sadness);
+        emotionMap.Add("relaxation", relaxation);
+        emotionMap.Add("anger", anger);
         
         // Add patterns and messages
-        promptsAndVibrations.Add(messages[0], joy);
-        promptsAndVibrations.Add(messages[1], joy);
-        promptsAndVibrations.Add(messages[2], sadness);
-        promptsAndVibrations.Add(messages[3], sadness);
-        promptsAndVibrations.Add(messages[4], anger);
-        promptsAndVibrations.Add(messages[5], anger);
-        promptsAndVibrations.Add(messages[6], relaxation);
-        promptsAndVibrations.Add(messages[7], relaxation);
+        AddMessagesWithRange(0, 9, joy);
+        AddMessagesWithRange(10, 19, sadness);
+        AddMessagesWithRange(20, 29, relaxation);
+        AddMessagesWithRange(30, 39, anger);
+        AddMessagesWithRangeAndRandomVibration(40, 49);
     }
 
     // Is called when user presses "Next pattern"-button
@@ -73,12 +135,26 @@ public class VibrationManager : MonoBehaviour
             return;
         }
         
+        
         if (currentMessage != null)
         {
-            FindFirstObjectByType<QuestionnaireManager>().logQuestionnaireValues($"{currentMessage}");
+            string e;
+            if (currentVibration.SequenceEqual(joy))
+                e = "joy";
+            else if (currentVibration.SequenceEqual(sadness))
+                e = "sadness";
+            else if (currentVibration.SequenceEqual(relaxation))
+                e = "relaxation";
+            else if (currentVibration.SequenceEqual(anger))
+                e = "anger";
+            else
+                e = "unknown";
+        
+            FindFirstObjectByType<QuestionnaireManager>().logQuestionnaireValues($"{currentMessage}", e);
         }
         
         // Random value between 0 and length of dict.
+
         Random rnd = new Random();
         int randomNr  = rnd.Next(0, promptsAndVibrations.Count-1);  // creates a number between 0 and length of dict
         long[] value;
@@ -108,6 +184,7 @@ public class VibrationManager : MonoBehaviour
             // FindFirstObjectByType<Logger>().Log($"Message: {messages[randomNr]}, Pattern: {value}");
             // Set current message
             currentMessage = messages[randomNr];
+            currentVibration = value;
             //Start Vibration
             if (shouldVibrate)
             {
@@ -170,8 +247,6 @@ public class VibrationManager : MonoBehaviour
                         StartCoroutine(VibratePattern1());
                         break;
                 }
-                //FindFirstObjectByType<Logger>().Log($"Vibrate with pattern: {pattern}");
-                
             });
         } else {
             // Android -- Custom pattern
@@ -257,5 +332,35 @@ public class VibrationManager : MonoBehaviour
     public void SetShouldVibrate(bool value)
     {
         shouldVibrate = value;
+    }
+
+    void AddMessagesWithRange(int start, int end, long[] pattern)
+    {
+        for (var i = start; i <= end; i++)
+        {
+            promptsAndVibrations.Add(messages[i], pattern);  
+        }
+    }
+
+    void AddMessagesWithRangeAndRandomVibration(int start, int end)
+    {
+        for (var i = start; i <= end; i++)
+        {
+            Random rnd = new Random();
+            int randomNr  = rnd.Next(1, 5);
+            switch (randomNr)
+            {
+                case 1: promptsAndVibrations.Add(messages[i], joy);
+                    break;
+                case 2: promptsAndVibrations.Add(messages[i], sadness);
+                    break;
+                case 3: promptsAndVibrations.Add(messages[i], relaxation);
+                    break;
+                case 4:
+                default:
+                    promptsAndVibrations.Add(messages[i], anger);
+                    break;
+            }
+        }
     }
 }
