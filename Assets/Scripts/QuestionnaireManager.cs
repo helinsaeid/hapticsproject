@@ -56,7 +56,7 @@ public class QuestionnaireManager : MonoBehaviour
         bool shouldVibrate = optionGroup.transform.Find("ShouldVibrateToggle").GetComponent<Toggle>().isOn;
         
         // If something is wrong the arousal and valence values are 0
-        FindFirstObjectByType<Logger>().Log($"'{message}', '{vibration}', {emotionValue}, {arousalValue},  {valenceValue}, {shouldVibrate}");
+        FindFirstObjectByType<Logger>().Log($"{message}; {vibration}; {emotionValue}; {arousalValue};  {valenceValue}; {shouldVibrate}");
         
         ResetGroups();
     }

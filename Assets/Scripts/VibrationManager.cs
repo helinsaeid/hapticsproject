@@ -154,7 +154,6 @@ public class VibrationManager : MonoBehaviour
         }
         
         // Random value between 0 and length of dict.
-
         Random rnd = new Random();
         int randomNr  = rnd.Next(0, promptsAndVibrations.Count-1);  // creates a number between 0 and length of dict
         long[] value;
@@ -262,7 +261,7 @@ public class VibrationManager : MonoBehaviour
     void AndroidVibrate(long[] pattern, int repeat)
     {
         Vibration.Init();
-        Vibration.VibrateAndroid(pattern, repeat);
+        // Vibration.VibrateAndroid(pattern, repeat);
         // FindFirstObjectByType<Logger>().Log($"Vibrate with pattern: {pattern}");
     }
 

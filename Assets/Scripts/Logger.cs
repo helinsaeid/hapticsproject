@@ -14,7 +14,7 @@ public class Logger : MonoBehaviour
     public void Log(string message)
     {
         string timestamp = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        string fullMessage = $"[{timestamp}] {message}\n";
+        string fullMessage = $"[{timestamp}]; {message}\n";
 
         File.AppendAllText(logPath, fullMessage);
         Debug.Log(fullMessage);
